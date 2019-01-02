@@ -7,7 +7,7 @@ class Logic:
 	def texts(self,win):
 		font=pygame.font.Font(None,30)
 		scoretext=font.render("Score:"+str(self.score), 1,(255,255,255))
-		win.blit(scoretext, (5, 100))
+		win.blit(scoretext, (5, 5))
 	
 	def keyDetection(self,player):
 		keys = pygame.key.get_pressed()
