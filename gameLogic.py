@@ -1,4 +1,5 @@
 import pygame
+import random
 class Logic:
 	def __init__(self):
 		self.score = 0
@@ -19,3 +20,15 @@ class Logic:
 			player.move(0,-1)
 		if keys[pygame.K_DOWN]:
 			player.move(0,1)
+	
+	def gegnerMove(self,gegner):
+		wheretoMove = random.randint(0, 3)
+		if wheretoMove== 0:
+			gegner.move(-5,0)
+		if wheretoMove== 1:
+			gegner.move(5,0)
+		if wheretoMove== 2:
+			gegner.move(0,-5)
+		if wheretoMove== 3:
+			gegner.move(0,5)
+		

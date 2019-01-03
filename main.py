@@ -10,6 +10,7 @@ pygame.display.set_caption("First")
 
 # Generate objects
 player = Player()
+gegner = Player()
 apple = []
 for i in range(0,20):
 	apple.append(Apfel())
@@ -32,6 +33,7 @@ while run:
 	#Charakter zeichnen
 	win.fill((51,51,0))
 	pygame.draw.rect(win, (255, 200, 0), player.rect)
+	pygame.draw.rect(win, (255, 200, 0), gegner.rect)
 	for ziel in apple:
 		pygame.draw.rect(win, (255, 0, 0), ziel.rect)
 	for i in range(0,len(apple)):
@@ -44,6 +46,7 @@ while run:
 	#Game logic verwarlten
 	game.keyDetection(player)
 	game.texts(win)
+	game.gegnerMove(gegner)
 	
 	#Bild aktualisieren
 	pygame.display.update()
