@@ -26,7 +26,6 @@ class Logic:
 			if gegner.rect.y < apple[0].rect.y:
 				gegner.move(0,1)
 	
-		
 	def appleCollsion(self,apple):
 		for i in range (0,len(apple)-1):
 			for j in range (i+1,len(apple)-1):
