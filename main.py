@@ -30,17 +30,17 @@ doppelte= True
 while doppelte:
 	doppelte = game.appleCollsion(apple)
 
-#Game Schleife
+#Game loop
 while run:
 	clock.tick(120)
-	#Abbruch Bedingungen
+	#End the game
 	for event in pygame.event.get():
 		if event.type == pygame.QUIT:
 			run = False
 	if len(apple) == 0:
 		run = False
 	
-	#Charakter zeichnen
+	#draw everything
 	win.fill((51,51,0))
 	pygame.draw.rect(win, (255, 200, 0), player.rect)
 	pygame.draw.rect(win, (0, 0, 255), gegner.rect)
@@ -58,13 +58,13 @@ while run:
 			apple.remove(apple[i-1])
 			enemiescore.score += 1
 	
-	#Game logic verwarlten
+	#Game logic 
 	game.keyDetection(player)
 	playerscore.texts(win,5,5,"Player-Score : ")
 	enemiescore.texts(win,600,5,"Enemy-Score : ")
 	game.gegnerMove(gegner,apple)
 	
-	#Bild aktualisieren
+	
 	pygame.display.update()
 
 print("You : ",playerscore.score,"\nEnemy : ",enemiescore.score)	
