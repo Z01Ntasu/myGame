@@ -1,14 +1,8 @@
 import pygame
 import random
+from apple import Apfel
 class Logic:
-	def __init__(self):
-		self.score = 0
-		
-		
-	def texts(self,win):
-		font=pygame.font.Font(None,30)
-		scoretext=font.render("Score:"+str(self.score), 1,(255,255,255))
-		win.blit(scoretext, (5, 5))
+
 	
 	def keyDetection(self,player):
 		keys = pygame.key.get_pressed()
@@ -21,14 +15,25 @@ class Logic:
 		if keys[pygame.K_DOWN]:
 			player.move(0,1)
 	
-	def gegnerMove(self,gegner):
-		wheretoMove = random.randint(0, 3)
-		if wheretoMove== 0:
-			gegner.move(-5,0)
-		if wheretoMove== 1:
-			gegner.move(5,0)
-		if wheretoMove== 2:
-			gegner.move(0,-5)
-		if wheretoMove== 3:
-			gegner.move(0,5)
+	def gegnerMove(self,gegner,apple):
+		if len(apple) == 0:
+			print()
+		else:
+			if gegner.rect.x > apple[0].rect.x:
+				gegner.move(-1,0)
+			if gegner.rect.x < apple[0].rect.x:
+				gegner.move(1,0)
+			if gegner.rect.y > apple[0].rect.y:
+				gegner.move(0,-1)
+			if gegner.rect.y < apple[0].rect.y:
+				gegner.move(0,1)
+	
 		
+	def appleCollsion(self,apple):
+		for i in range (0,len(apple)-1):
+			for j in range (i+1,len(apple)-1):
+				if apple[i].rect.colliderect(apple[j]):
+					apple.remove(apple[i])
+					apple.append(Apfel())
+					return True	
+		return False
